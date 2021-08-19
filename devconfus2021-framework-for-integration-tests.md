@@ -1,5 +1,8 @@
 # Framework for integration tests lifecycle
 
+[![hackmd-github-sync-badge](https://hackmd.io/dXBUHLpHSH2eRQl01rY5Fg/badge)](https://hackmd.io/dXBUHLpHSH2eRQl01rY5Fg)
+
+
 ---
 
 Slides 

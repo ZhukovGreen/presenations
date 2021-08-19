@@ -1,7 +1,10 @@
-# Framework for integration tests lifecycle
-
 [![hackmd-github-sync-badge](https://hackmd.io/dXBUHLpHSH2eRQl01rY5Fg/badge)](https://hackmd.io/dXBUHLpHSH2eRQl01rY5Fg)
 
+https://github.com/ZhukovGreen/talks/blob/main/devconfus2021-framework-for-integration-tests.md
+
+---
+
+# Framework for integration tests lifecycle
 
 ---
 

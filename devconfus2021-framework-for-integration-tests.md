@@ -303,35 +303,3 @@ It is a time for questions!
 :question: 
 :question: 
 :question: 
-
----
-
-## Ideas, questions goes here
-
-- [x] Should we talk all together?
-yes
-- [x] Who will do Tomas's talk about Packit (as he is not around)
-no
-
-outputs of our meeting:
-- [x] show the live example (asciinema)
-just print screen from tmt. convert2rhel is not yet there
-- [X] add couple more sentences at the begining
-- [X] rearange structure, so the problem goes first
-- [X] Run tests in intranet from the github (very important)
-- [X] Add more interaction (pictures, ascicinema samples)
-- [X] Show how the ci works on real project (hope it will be convert2rhel, fallback to tmt)
-- [X] Add timeframes
-
----
-- [X] ask Michal to provide asciirec of tmt run in libvirt
-- [X] too much possibility world
-- [X] fix the view of the tmt part (fit into the screen)
-- [ ] mention in tft and packit the internal infra
-
----
-
-
-
-## TBD
-

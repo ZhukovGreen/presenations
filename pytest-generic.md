@@ -72,12 +72,13 @@ def test_basic():
 ---
 
 
-## How excute tests
+## How execute tests
 
 From top of my head the most frequently used commands are:
 
 ```bash=
 $ pytest    # to run the pytest session
+$ pytest --collect-only    # to list collected tests
 $ pytest -k 'some pattern or expression here'    # to run tests matching the pattern
 $ pytest --lf    # run last failed tests only
 $ pytest --pdb   # fall into python debugger if test fails

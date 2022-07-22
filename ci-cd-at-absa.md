@@ -114,28 +114,8 @@ We build our new CI/CD system based on this system.
 
 ----
 
-```mermaid
-%%{init: {'theme':'base'}}%%
-flowchart TB
-    subgraph MR[On merge request]
-        A[Merge request] --> B[Test and Lint]
-    end
-    subgraph PUSH[Push to main]
-        B --> C[publish artefacts]
-        C --> D[deploy A target]
-        C --> E[deploy B target]
-    end
-    subgraph R[repo]
-    S(encrypted secrets)
-    end
-    S --> MR
-    S --> PUSH
-    subgraph GHS[GitHub secrets]
-    GS[secret key]
-    end
-    GS -- decrypts --> PUSH
-    GS -- decrypts --> MR
-```
+![](https://i.imgur.com/kt5zJHd.png)
+
 
 ```yaml
 local runners:

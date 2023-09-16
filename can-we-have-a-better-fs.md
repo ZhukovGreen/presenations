@@ -2,15 +2,23 @@
 
 by zhukovgreen
 
+PyconCZ 2023
+
 ---
 
 ## Disclaimer
 
 ----
 
-- My talk is opinionated in regards to what I think is good and bad
+- My talk represents my opinion regards to what I think is good and bad
 - I'll try to be very short in outlining general items, 
-such as what is the feature store, its cons/pros, and what tools are available on the market. All these you can find on the internet
+such as what is the feature store, its cons/pros, and what tools are available on the market.
+All these you can find on the internet
+- My talk primary based on the feasibility study, which I was conducted
+during the adoption of the feature store in my current company (Paylocity)
+- I have a working prototype of the described solution, which I will be
+opensourcing (good to set the goals)
+- I am sorry for the lack of smiles and fun pictures in the slides
 
 ---
 
@@ -21,8 +29,7 @@ such as what is the feature store, its cons/pros, and what tools are available o
 ----
 
 - https://github.com/zhukovgreen
-- iam@zhukovgreen.pro
-- https://www.linkedin.com/in/artem-zhukov-0556b422
+- mailto:iam@zhukovgreen.pro
 
 ![](https://raw.githubusercontent.com/zhukovgreen/talks/main/resources/r1tAkdWy6.png)
 
@@ -31,24 +38,21 @@ In :heart: with Python and Spark. My first Python version was 2.6
 ----
 
 Data Engineer at Paylocity. 
-* Working with data
+* working with data
 * building data pipelines, tools
 * evaluating data architectures
 * ci/cd systems
 * other software development.
 
-Very into functional programming and Python's
-typing ecosystem. Inspired by Scala.
-
----
-
-How many of you Data Engineers or Data Scientists?
+Very like functional programming, Python's
+typing ecosystem, software design architectures.
+Inspired by Scala.
 
 ---
 
 How many of you uses feature store as a primary tool to read/write data?
 
-Please write on slido which tool you're using for this
+Please write on Slido which tool you're using for this
 
 ---
 
@@ -56,12 +60,14 @@ Please write on slido which tool you're using for this
 
 ```text
 Feature store is the abstraction around the data tables.
-It facilitates the discoverability and lineage of the 
+
+It facilitates the discoverability of the 
 features (columns in tables), through the binding of  
-metadata to features. It also makes the features
-consuming/producing easier (reuse of features). It has
-a strong focus on the tooling to simplify the data science
-workflows (i.e. generating training/testing datasets).
+metadata to features. As well as enables to build the features liniage graphs.
+
+It also makes the features consuming/producing easier (reuse of features).
+And it has a strong focus on the tooling to simplify the data science
+workflows (i.e. generating training/testing datasets, snapshoting).
 ```
 
 ---
@@ -86,8 +92,9 @@ Other known:
 What is in common:
 - all of them use some kind of a database for storing the metadata
 - therefore all need some infrastructure
-- most of them do not support Spark and focused on Pandas
-- bad local development support
+- most of them do not support Spark for IO with the feature store 
+and focused on Pandas
+- bad/impossible local development support
 
 ----
 
@@ -97,7 +104,7 @@ Databricks feature store
 * Very feature-rich and nicely designed (compared to others)
 * It supports feature lookups
 * It is spark first
-* Uses delta format (acid transactions/walk-in time ...)
+* Uses delta format (almost ACID transactions/walk-in time ...)
 
 ----
 
@@ -141,11 +148,11 @@ transformations tooling)
 
 ---
 
-## What problems/things to do better
+## What things can be better
 
 ----
 
-* The search experience is very plain. See a typical example:
+* The search experience is very plain. See a typical search UI example:
 
 https://dbc-3bc168f5-c0de.cloud.databricks.com/?o=1796303353019077#feature-store/feature-store
 
@@ -168,8 +175,9 @@ This makes the search experience worse and just confuses the client.
 * Hiding interesting parts in the black boxes
 * No help in optimizing queries, even though the source of the data
 is here
+* Not stable and complex interfaces which breaks downstream clients
 
-Probably many others...
+Probably many others (if we would be able to access their code)...
 
 ---
 
@@ -177,29 +185,30 @@ Probably many others...
 
 ----
 
-It would be fair to say that sometimes companies are
-just not going to accept the risk of building something
-own. It has some logic.
+It would be fair to say that sometimes (probably as a rule) companies are
+just not going to accept the risk of building something own. It has some
+logic.
 
 But if your company has experience with building its own
 production-grade components, then let's discuss how it might look like
 
 ----
 
-Why?
+Let's start from "Why"?
 
 ----
 
-The same reasons apply to the open source projects.
+The same reasons which applies to the open source projects.
 
 But not just that...
 
 ----
 
-- own solution can be more tuned to the company environment
-- own solution will be growing together with the team
-- it easy to integrate the own solution into the team tooling set,
+- own solution can be more tuned to the company
+- own solution will be evolving together with the team
+- it is much easier to integrate the own solution into the team tooling set,
 building new useful composite components
+- you're not locked to some vendor
 
 ---
 
@@ -216,15 +225,16 @@ should be bound to the features)
 - but feature store reader/writer should support tables,
 as this is the main entity the whole data engineering stack
 is focused on
-- convenient feature search
+- convenient feature search (feature rich, supporting complex queries, fuzzy
+search etc.)
 - metadata repository decentralized, version controlled
 - simple and extendable (let others adapt it to their needs by 
 contributing or forking)
 - can be deployed to any cloud platform (hint - just
 no need to deploy would work)
 - supports time traveling and point-in-time snapshotting
-- support the permissions per feature (GDPR/PII etc.)
-- query optimization mechanisms are data-driven :question: 
+- support setting feature level permissions (GDPR/PII etc.)
+- query optimization mechanisms :question: 
 ```
 
 ----
@@ -233,7 +243,7 @@ Now very cool part...
 
 ----
 
-- query optimization mechanisms are data-driven :question: 
+- query optimization mechanism :question: 
 
 ```text
 Query statistics         Decision on
@@ -248,13 +258,13 @@ z-ordering action
 ---
 
 
-## Components
+## Components of the system
 
 ----
 
-* Feature Store - interacts with the metadata. Publishes it to the 
-GitHub repo as csv files
-* Reader/Writer - client to read/write to tables
+* Feature Store - interacts with the metadata (hot and cold). Publishes it to
+the GitHub repo as csv files
+* Reader/Writer - clients to read/write to tables
 * QueryOptimizer - analyses query stats and publishes the write strategy
 
 ----
@@ -307,8 +317,6 @@ The repository with the metadata located on some spark friendly storage accessed
 - ftp:/
 - s3a://
 - hdfs://
-
-
 ...
 
 ---
@@ -318,7 +326,7 @@ The repository with the metadata located on some spark friendly storage accessed
 ----
 
 FeatureStore client publishes the metadata as csv files to the GitHub
-repository.
+repository (cold metadata)
 
 This enables us to search the features + do all the cool stuff from the
 VCS system (i.e. git blame to see who contributed the feature, or
@@ -488,11 +496,11 @@ class FSReadersV1(Protocol[ConfigType, FeatureTable_co]):
         tables: tuple[TableName, ...] = (),
     ):
         """Get a table containing specified features.
-        
+
         Look for tables containing the given features,
         selecting specified features and joining them
         on the pk specified in the table's meta.
-        
+
         where: is an optional filter
         tables: only specified tables if not empty, otherwise
             all tables will be joined

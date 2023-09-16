@@ -63,6 +63,7 @@ workflows (i.e. generating training/testing datasets).
 The most popular are:
 - Databricks feature store
 - AWS Sagemaker
+- Tecton
 
 Other known:
 - Feast
@@ -75,7 +76,7 @@ Other known:
 What is in common:
 - all of them use some kind of a database for storing the metadata
 - therefore all need some infrastructure
-- most of them do not support Spark and focused on pandas
+- most of them do not support Spark and focused on Pandas
 - bad local development support
 
 ----
@@ -197,17 +198,17 @@ building new useful composite components
 ---
 
 ```text
-- Build on spark and for spark
+- build on spark and for spark
 - in order to use: just `pip install` and set the 
 configuration. No infrastructure
 - metadata should be feature-centric (all the metadata
 should be bound to the features)
-- But feature store reader/writer should support tables,
+- but feature store reader/writer should support tables,
 as this is the main entity the whole data engineering stack
 is focused on
 - convenient feature search
-- decentralized, version controlled
-- simple and extendable (adapts to your needs by 
+- metadata repository decentralized, version controlled
+- simple and extendable (let others adapt it to their needs by 
 contributing or forking)
 - can be deployed to any cloud platform (hint - just
 no need to deploy would work)
@@ -378,10 +379,6 @@ class FSWritersV1(Protocol[ConfigType]):
     config: ConfigType = attrs.field()
     spark: SparkSession = attrs.field()
 
-    def table_exists(self, name: TableName) -> bool:
-        """Check if table exists in the catalog's database."""
-        ...
-
     def create_table(
         self,
         name: TableName,
@@ -494,6 +491,11 @@ class FSReadersV1(Protocol[ConfigType, FeatureTable_co]):
 ```
 
 ---
+
+# Bonus item (if I have time)
+
+Show how you can patch the databricks feature store to be able to
+test your code locally
 
 # Questions?
 

@@ -497,6 +497,8 @@ class FSReadersV1(Protocol[ConfigType, FeatureTable_co]):
 Show how you can patch the databricks feature store to be able to
 test your code locally
 
+---
+
 # Questions?
 
 Link to the presentation

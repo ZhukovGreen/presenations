@@ -14,6 +14,9 @@ PyconCZ 2023
 - I'll try to be very short in outlining general items, 
 such as what is the feature store, its cons/pros, and what tools are available on the market.
 All these you can find on the internet
+
+----
+
 - My talk primary based on the feasibility study, which I was conducted
 during the adoption of the feature store in my current company (Paylocity)
 - I have a working prototype of the described solution, which I will be

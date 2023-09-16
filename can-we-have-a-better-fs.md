@@ -42,6 +42,16 @@ typing ecosystem. Inspired by Scala.
 
 ---
 
+How many of you Data Engineers or Data Scientists?
+
+---
+
+How many of you uses feature store as a primary tool to read/write data?
+
+Please write on slido which tool you're using for this
+
+---
+
 ## What is the feature store
 
 ```text

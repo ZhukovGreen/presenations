@@ -18,7 +18,9 @@ All these you can find on the internet
 during the adoption of the feature store in my current company (Paylocity)
 - I have a working prototype of the described solution, which I will be
 opensourcing (good to set the goals)
-- I am sorry for the lack of smiles and fun pictures in the slides
+- I am sorry for the lack of smiles and fun pictures in slides
+
+Please prepare reading and listening!
 
 ---
 
@@ -63,11 +65,14 @@ Feature store is the abstraction around the data tables.
 
 It facilitates the discoverability of the 
 features (columns in tables), through the binding of  
-metadata to features. As well as enables to build the features liniage graphs.
+metadata to features. As well as enables to build the 
+features liniage graphs.
 
-It also makes the features consuming/producing easier (reuse of features).
-And it has a strong focus on the tooling to simplify the data science
-workflows (i.e. generating training/testing datasets, snapshoting).
+It also makes the features consuming/producing easier 
+(reuse of features).
+And it has a strong focus on the tooling to simplify the 
+data science workflows (i.e. generating training/testing
+datasets, snapshoting).
 ```
 
 ---
@@ -90,7 +95,7 @@ Other known:
 ----
 
 What is in common:
-- all of them use some kind of a database for storing the metadata
+- all of them use some kind of a RDBMS database for storing the metadata
 - therefore all need some infrastructure
 - most of them do not support Spark for IO with the feature store 
 and focused on Pandas
@@ -165,7 +170,7 @@ https://dbc-3bc168f5-c0de.cloud.databricks.com/?o=1796303353019077#feature-store
 * Metadata is not feature oriented
 
 Metadata is usually bound to the tables, not features.
-This makes the search experience worse and just confuses the client.
+This makes the search experience worse and just confuses users.
 
 ----
 
@@ -245,6 +250,10 @@ Now very cool part...
 
 - query optimization mechanism :question: 
 
+This is actually the only place when you can make a reasonable
+estimate on how better to optimize your data to improve the
+query experience
+
 ```text
 Query statistics         Decision on
 as metadata       -->    optimization approaches
@@ -313,7 +322,8 @@ Metadata table:
 
 ----
 
-The repository with the metadata located on some spark friendly storage accessed by the organization
+The repository with the metadata located on some spark friendly storage accessed 
+by the organization (hot metadata storage):
 - ftp:/
 - s3a://
 - hdfs://

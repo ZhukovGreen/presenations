@@ -8,15 +8,15 @@ by zhukovgreen
 
 ----
 
-- My talk is opinionated in regards of what I think good and bad
+- My talk is opinionated in regards to what I think is good and bad
 - I'll try to be very short in outlining general items, 
-such as what is the feature store, its cons/pros, what tools are available on the market. All these you can find in the internet
+such as what is the feature store, its cons/pros, and what tools are available on the market. All these you can find on the internet
 
 ---
 
 ## Me
 
-![](https://hackmd.io/_uploads/S1EFkO-yp.jpg)
+![](https://raw.githubusercontent.com/zhukovgreen/talks/main/resources/S1EFkO-yp.jpg)
 
 ----
 
@@ -24,9 +24,9 @@ such as what is the feature store, its cons/pros, what tools are available on th
 - iam@zhukovgreen.pro
 - https://www.linkedin.com/in/artem-zhukov-0556b422
 
-![](https://hackmd.io/_uploads/r1tAkdWy6.png)
+![](https://raw.githubusercontent.com/zhukovgreen/talks/main/resources/r1tAkdWy6.png)
 
-In :heart: with Python and Spark. My first python version was 2.6 
+In :heart: with Python and Spark. My first Python version was 2.6 
 
 ----
 
@@ -37,7 +37,7 @@ Data Engineer at Paylocity.
 * ci/cd systems
 * other software development.
 
-Very into the functional programming, python's
+Very into functional programming and Python's
 typing ecosystem. Inspired by Scala.
 
 ---
@@ -47,10 +47,10 @@ typing ecosystem. Inspired by Scala.
 ```text
 Feature store is the abstraction around the data tables.
 It facilitates the discoverability and lineage of the 
-features (columns in tables), through the binding of a 
+features (columns in tables), through the binding of  
 metadata to features. It also makes the features
 consuming/producing easier (reuse of features). It has
-strong focus on the tooling to simplify the data science
+a strong focus on the tooling to simplify the data science
 workflows (i.e. generating training/testing datasets).
 ```
 
@@ -60,7 +60,7 @@ workflows (i.e. generating training/testing datasets).
 
 ----
 
-Most popular are:
+The most popular are:
 - Databricks feature store
 - AWS Sagemaker
 
@@ -68,14 +68,14 @@ Other known:
 - Feast
 - H2O feature store
 - Butterbee
-- ... (many other)
+- ... (many others)
 
 ----
 
 What is in common:
-- all of them uses some kind of a database for storing the metadata
-- therefore all needs some infrastructure
-- most of them do not support spark and focused on pandas
+- all of them use some kind of a database for storing the metadata
+- therefore all need some infrastructure
+- most of them do not support Spark and focused on pandas
 - bad local development support
 
 ----
@@ -83,10 +83,10 @@ What is in common:
 Databricks feature store
 
 :+1:
-* Very feature rich and nicely designed (compared to others)
+* Very feature-rich and nicely designed (compared to others)
 * It supports feature lookups
 * It is spark first
-* Uses delta format (acid transactions/walk in time ...)
+* Uses delta format (acid transactions/walk-in time ...)
 
 ----
 
@@ -94,7 +94,7 @@ Databricks feature store
 * Not supporting local development at all
 * Metadata is tables centric
 * Poor search experience (very plain)
-* Lineage requires you to upgrade to the unity catalog
+* Lineage requires you to upgrade to the Unity catalog
 * Unity catalog makes the local development almost impossible
 
 ----
@@ -104,7 +104,7 @@ AWS Sagemaker
 :+1:
 * Better local development support
 * Data is available on s3
-* Good integration with the Glue data catalogue
+* Good integration with the Glue data catalog
 
 ----
 
@@ -119,7 +119,7 @@ not actively developed external project
 h2o feature store
 
 :+1: 
-* Very comprehensive open sourced tool (includes data catalogue and 
+* Very comprehensive open-sourced tool (includes data catalog and 
 transformations tooling)
 * Good local development experience
 
@@ -130,35 +130,35 @@ transformations tooling)
 
 ---
 
-## What problems / things to do better
+## What problems/things to do better
 
 ----
 
-* Search experience is very plain. See typical example:
+* The search experience is very plain. See a typical example:
 
 https://dbc-3bc168f5-c0de.cloud.databricks.com/?o=1796303353019077#feature-store/feature-store
 
 ----
 
-* Need of the infrastructure deployment and maintanence
+* Need the infrastructure deployment and maintenance
 
 ----
 
 * Metadata is not feature oriented
 
-Metadata are usually binded to the tables, not features.
-This makes the search experience worser and just confuses the client.
+Metadata is usually bound to the tables, not features.
+This makes the search experience worse and just confuses the client.
 
 ----
 
 * Lack of spark support
 * Lack of local development support
 * Strong push to the "web ide" saas
-* Hiding intersting parts into the black boxes
-* No help in queries optimization, even though the source of the data
+* Hiding interesting parts in the black boxes
+* No help in optimizing queries, even though the source of the data
 is here
 
-Probably many other...
+Probably many others...
 
 ---
 
@@ -168,10 +168,10 @@ Probably many other...
 
 It would be fair to say that sometimes companies are
 just not going to accept the risk of building something
-own. What has its logic.
+own. It has some logic.
 
-But if your company has experience with building own
-production grade components, then let's discuss how it might looks like
+But if your company has experience with building its own
+production-grade components, then let's discuss how it might look like
 
 ----
 
@@ -179,20 +179,20 @@ Why?
 
 ----
 
-Same reasons which applies to the open source projects.
+The same reasons apply to the open source projects.
 
 But not just that...
 
 ----
 
 - own solution can be more tuned to the company environment
-- own solution will be growing toghether with the team
+- own solution will be growing together with the team
 - it easy to integrate the own solution into the team tooling set,
 building new useful composite components
 
 ---
 
-## Design orientirs
+## Design orienteers
 
 ---
 
@@ -200,20 +200,20 @@ building new useful composite components
 - Build on spark and for spark
 - in order to use: just `pip install` and set the 
 configuration. No infrastructure
-- metadata should be feature centric (all the metadata
-should be binded to the features)
+- metadata should be feature-centric (all the metadata
+should be bound to the features)
 - But feature store reader/writer should support tables,
-as this is the main enity the whole data engineering stack
+as this is the main entity the whole data engineering stack
 is focused on
-- convinient feature search
+- convenient feature search
 - decentralized, version controlled
-- simple and extendable (adopt to your need by 
+- simple and extendable (adapts to your needs by 
 contributing or forking)
 - can be deployed to any cloud platform (hint - just
 no need to deploy would work)
 - supports time traveling and point-in-time snapshotting
 - support the permissions per feature (GDPR/PII etc.)
-- query optimization mechanisms are data driven :question: 
+- query optimization mechanisms are data-driven :question: 
 ```
 
 ----
@@ -222,7 +222,7 @@ Now very cool part...
 
 ----
 
-- query optimization mechanisms are data driven :question: 
+- query optimization mechanisms are data-driven :question: 
 
 ```text
 Query statistics         Decision on
@@ -242,9 +242,9 @@ z-ordering action
 ----
 
 * Feature Store - interacts with the metadata. Publishes it to the 
-github repo as csv files
+GitHub repo as csv files
 * Reader/Writer - client to read/write to tables
-* QueryOptimizer - analyses query stats and publish the write strategy
+* QueryOptimizer - analyses query stats and publishes the write strategy
 
 ----
 
@@ -296,6 +296,8 @@ The repository with the metadata located on some spark friendly storage accessed
 - ftp:/
 - s3a://
 - hdfs://
+
+
 ...
 
 ---
@@ -304,7 +306,7 @@ The repository with the metadata located on some spark friendly storage accessed
 
 ----
 
-FeatureStore client publishes the metadata as csv files to the github
+FeatureStore client publishes the metadata as csv files to the GitHub
 repository.
 
 This enables us to search the features + do all the cool stuff from the
@@ -314,13 +316,15 @@ git revert etc.
 
 ----
 
-![](https://hackmd.io/_uploads/ry59ykfJa.png)
+![](https://raw.githubusercontent.com/zhukovgreen/talks/main/resources/ry59ykfJa.png)
 
 ----
 
-![](https://hackmd.io/_uploads/ry-7lyfJ6.png)
-![](https://hackmd.io/_uploads/HybFxkzy6.png)
-![](https://hackmd.io/_uploads/H1wslJMJT.png)
+![](https://raw.githubusercontent.com/zhukovgreen/talks/main/resources/ry-7lyfJ6.png)
+
+![](https://raw.githubusercontent.com/zhukovgreen/talks/main/resources/HybFxkzy6.png)
+
+![](https://raw.githubusercontent.com/zhukovgreen/talks/main/resources/H1wslJMJT.png)
 
 ---
 
@@ -478,11 +482,11 @@ class FSReadersV1(Protocol[ConfigType, FeatureTable_co]):
     ):
         """Get a table containing specified features.
         
-        Looks for tables containing the given features,
-        selecting specified features and join them
-        on the pk specified in the tables meta.
+        Look for tables containing the given features,
+        selecting specified features and joining them
+        on the pk specified in the table's meta.
         
-        where: is optional filter
+        where: is an optional filter
         tables: only specified tables if not empty, otherwise
             all tables will be joined
         """
@@ -495,12 +499,5 @@ class FSReadersV1(Protocol[ConfigType, FeatureTable_co]):
 
 Link to the presentation
 
-![](https://hackmd.io/_uploads/r1nOEHfJ6.png)
-
-
-
-
-
-
-
+![](https://raw.githubusercontent.com/zhukovgreen/talks/main/resources/r1nOEHfJ6.png)
 

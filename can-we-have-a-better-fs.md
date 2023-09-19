@@ -2,7 +2,7 @@
 
 by zhukovgreen
 
-PyconCZ 2023
+PyCon CZ 23
 
 ---
 
